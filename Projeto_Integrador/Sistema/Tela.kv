@@ -1,0 +1,808 @@
+ScreenManager:
+    id: screen_manager
+    Screen_Login:
+        name: "login"
+    Screen_Menu:
+        name: "menu"
+    Screen_Cadastro:
+        name: "cadastro"
+    Screen_Deposito:
+        name: "deposito"
+    Screen_Saque:
+        name: "saque"
+    Screen_Extrato:
+        name: "extrato"
+    Screen_Perfil:
+        name: "perfil"
+
+#
+# TELAS
+#
+<Screen_Login>:
+    name: "login"
+    FloatLayout:
+        Fundo:
+        #
+        Label:
+            text: "FAÇA SEU LOGIN"
+            font_size: 30
+            pos_hint: {'center_x':.5, 'center_y':.9}
+            size_hint: None, None
+            bold: True
+            color: 0, 0, 0, 1
+        #
+        LabelVerificacao:
+            id: verificacao_log_error
+            font_size: 18
+            halign: 'center'
+            pos_hint: {'center_x':.5, 'center_y':.85}
+        #
+        Label:
+            text: "Digite seu CPF"
+            font_size: 20
+            pos_hint: {'center_x':.5, 'center_y':.7}
+            color: 0, 0, 0, 1
+        #
+        TextInput:
+            id: cpf_log
+            hint_text: 'digite somente os números'
+            size_hint: None, None
+            size: 200, 40
+            pos_hint: {'center_x': 0.5, 'center_y': 0.63}
+        #
+        LabelVerificacao:
+            id: cpf_log_error
+            pos_hint: {'center_x':.48, 'center_y':.58}
+        #
+        Label:
+            text: "Digite sua senha"
+            font_size: 20
+            pos_hint: {'center_x':.5, 'center_y':.5}
+            color: 0, 0, 0, 1
+        #
+        TextInput:
+            id: senha_log
+            size_hint: None, None
+            size: 200, 40
+            pos_hint: {'center_x': 0.5, 'center_y': 0.43}
+        #
+        LabelVerificacao:
+            id: senha_log_error
+            pos_hint: {'center_x':.48, 'center_y':.38}
+        #
+        Button:
+            text: "Entrar"
+            size_hint: None, None
+            size: 200, 40
+            font_size: 20
+            pos_hint: {'center_x': 0.5, 'center_y': 0.25}
+            background_color: 0.2, 0.8, 0.2, 1
+            on_press: root.manager.transition.direction = 'left'
+            on_release: root.informacoes_de_login(cpf_log.text, senha_log.text)
+        #
+        Button:
+            text: "Cadastro"
+            size_hint: None, None
+            size: 200, 40
+            font_size: 20
+            pos_hint: {'center_x': 0.5, 'center_y': 0.15}
+            background_color: 0.2, 0.2, 0.8, 1
+            on_press: root.manager.transition.direction = 'right'
+            on_release: app.root.current = 'cadastro'
+        #
+#
+<Screen_Cadastro>:
+    name: "cadastro"
+    FloatLayout:
+        Fundo:
+        #
+        Label:
+            text: "CADASTRO"
+            font_size: 30
+            pos_hint: {'center_x':.5, 'center_y':.9}
+            size_hint: None, None
+            bold: True
+            color: 0, 0, 0, 1
+        #
+        LabelCadastro:
+            text: "Nome:"
+            pos_hint: {'x':.15, 'y':.78 + 0.01}
+        #
+        InputCadastro:
+            id: nome_cad
+            pos_hint: {'x':.15, 'y':.72 + 0.01}
+        #
+        LabelVerificacao:
+            id: nome_cad_error
+            size_hint: None, None
+            size: self.texture_size
+            pos_hint: {'x':.15, 'y':.69 + 0.01}
+        #
+        LabelCadastro:
+            text: "CPF:"
+            pos_hint: {'x':.15, 'y':.63 + 0.01}
+        #
+        InputCadastro:
+            id: cpf_cad
+            hint_text: 'digite somente os números'
+            pos_hint: {'x':.15, 'y':.57 + 0.01}
+        #
+        LabelVerificacao:
+            id: cpf_cad_error
+            size_hint: None, None
+            size: self.texture_size
+            pos_hint: {'x':.15, 'y':.54 + 0.01}
+        #
+        LabelCadastro:
+            text: "DDD/Celular:"
+            pos_hint: {'x':.15, 'y':.48 + 0.01}
+        #
+        BoxLayout:
+            orientation: "horizontal"
+            size_hint: None, None
+            size: self.minimum_size
+            halign: 'left'
+            pos_hint: {'x': 0.15, 'y':.42 + 0.01}
+            spacing: 5
+            #
+            TextInput:
+                id: ddd_cad
+                size_hint: None, None
+                size: 50, 40
+                color: 0, 0, 0, 1
+                size_hint_x: None
+                width: self.size[0]
+                text: ""
+                font_color: 0.6, 0.6, 0.6, 1
+            #
+            TextInput:
+                id: numero_cad
+                size_hint: None, None
+                size: 120, 40
+                halign: 'left'
+                color: 0, 0, 0, 1
+                size_hint_x: None
+                width: self.size[0]
+                text: ""
+                font_color: 0.6, 0.6, 0.6, 1
+        #
+        LabelVerificacao:
+            id: DDDnumero_cad_error
+            size_hint: None, None
+            size: self.texture_size
+            pos_hint: {'x':.15, 'y':.39 + 0.01}
+        #
+        LabelCadastro:
+            text: "E-mail:"
+            pos_hint: {'x':.15, 'y':.33 + 0.01}
+        #
+        InputCadastro:
+            id: email_cad
+            pos_hint: {'x':.15, 'y':.27 + 0.01}
+        #
+        LabelVerificacao:
+            id: email_cad_error
+            size_hint: None, None
+            size: self.texture_size
+            pos_hint: {'x':.15, 'y':.24 + 0.01}
+        #
+        LabelCadastro:
+            text: "Data de Nascimento:"
+            pos_hint: {'x':.15, 'y':.18 + 0.01}
+        #
+        InputCadastro:
+            id: data_cad
+            hint_text: 'dia/mês/ano'
+            pos_hint: {'x':.15, 'y':.12 + 0.01}
+        #
+        LabelVerificacao:
+            id: data_cad_error
+            size_hint: None, None
+            size: self.texture_size
+            pos_hint: {'x':.15, 'y':.09 + 0.01}
+        #
+        LabelCadastro:
+            text: "CEP:"
+            pos_hint: {'x':.55, 'y':.79}
+        #
+        InputCadastro:
+            id: cep_cad
+            pos_hint: {'x':.55, 'y':.73}
+        #
+        LabelVerificacao:
+            id: cep_cad_error
+            size_hint: None, None
+            size: self.texture_size
+            pos_hint: {'x':.55, 'y':.70}
+        #
+        LabelCadastro:
+            text: "Rua:"
+            pos_hint: {'x':.55, 'y':.64}
+        #
+        InputCadastro:
+            id: rua_cad
+            text: "Rua "
+            pos_hint: {'x':.55, 'y':.58}
+        #
+        LabelVerificacao:
+            id: rua_cad_error
+            size_hint: None, None
+            size: self.texture_size
+            pos_hint: {'x':.55, 'y':.55}
+        #
+        LabelCadastro:
+            text: "Numero da casa:"
+            pos_hint: {'x':.55, 'y':.49}
+        #
+        InputCadastro:
+            id: Ncasa_cad
+            pos_hint: {'x':.55, 'y':.43}
+        #
+        LabelVerificacao:
+            id: Ncasa_cad_error
+            size_hint: None, None
+            size: self.texture_size
+            pos_hint: {'x':.55, 'y':.40}
+        #
+        LabelCadastro:
+            text: "Senha:"
+            pos_hint: {'x':.55, 'y':.34}
+        #
+        InputCadastro:
+            id: senha_cad
+            pos_hint: {'x':.55, 'y':.28}
+        #
+        LabelVerificacao:
+            id: senha_cad_error
+            size_hint: None, None
+            size: self.texture_size
+            pos_hint: {'x':.55, 'y':.25}
+        #
+        LabelCadastro:
+            text: "Confirme a senha:"
+            pos_hint: {'x':.55, 'y':.19}
+        #
+        InputCadastro:
+            id: confirmSenha_cad
+            pos_hint: {'x':.55, 'y':.13}
+        #
+        LabelVerificacao:
+            id: confirmSenha_cad_error
+            size_hint: None, None
+            size: self.texture_size
+            pos_hint: {'x':.55, 'y':.10}
+        #
+        LabelVerificacao:
+            id: verificacao_cad_error
+            bold: True
+            valign: 'center'
+            font_size: 22
+            pos_hint: {'center_x': 0.5, 'center_y': 0.05}
+            color: 0, 0.8, 0, 1
+        #
+        BoxLayout:
+            orientation: "vertical"
+            size_hint: None, None
+            size: self.minimum_size
+            pos_hint: {'center_x': 0.9, 'center_y': 0.1}
+            spacing: 15
+            #
+            Button:
+                text: "Voltar ao login"
+                size_hint: None, None
+                size: 200, 50
+                font_size: 18
+                background_color: 0.5, 0.5, 0.5, 1
+                on_press: root.manager.transition.direction = 'left'
+                on_release: app.root.current = 'login'
+            #
+            Button:
+                text: "Realizar Cadastro"
+                size_hint: None, None
+                size: 200, 50
+                font_size: 18
+                background_color: 0.2, 0.8, 0.2, 1
+                on_release: root.informacoes_de_cadastro(nome_cad.text, cpf_cad.text, ddd_cad.text, numero_cad.text, email_cad.text, data_cad.text, cep_cad.text, rua_cad.text, Ncasa_cad.text, senha_cad.text, confirmSenha_cad.text)
+#
+<Screen_Menu>:
+    name: "menu"
+    FloatLayout:
+        Fundo:
+        #
+        BannerLogo:
+        #
+        PyBank:
+        #
+        Perfil:
+        #
+        BoxLayout:
+            orientation: "vertical"
+            size_hint: None, None
+            size: self.minimum_size
+            pos_hint: {'center_x':.678, 'center_y':.385}
+            spacing: 60
+            #
+            Operacoes:
+                text: "Realizar Saque"
+                on_press: root.manager.transition.direction = 'left'
+                on_release: app.root.current ='saque'
+            #
+            Operacoes:
+                text: "Realizar Depósito"
+                on_press: root.manager.transition.direction = 'left'
+                on_release: app.root.current ='deposito'
+            #
+            Operacoes:
+                text: "Visualizar Extrato"
+                on_press: root.manager.transition.direction = 'left'
+                on_release: app.root.current ='extrato'
+        #
+        Label:
+            text: "Perfil"
+            font_size: 30
+            halign: "left"
+            pos_hint: {'x': 0.14, 'y': 0.65}
+            size_hint: None, None
+            color: 0, 0, 0, 1
+            bold: True
+        #
+        PerfilUsuario:
+            id: nome_menu
+            pos_hint: {'x': 0.02, 'y': 0.62}
+        #
+        PerfilUsuario:
+            id: cpf_menu
+            pos_hint: {'x': 0.02, 'y': 0.57}
+        #
+        PerfilUsuario:
+            id: numero_menu
+            pos_hint: {'x': 0.02, 'y': 0.52}
+        #
+        PerfilUsuario:
+            id: email_menu
+            pos_hint: {'x': 0.02, 'y': 0.47}
+        #
+        PerfilUsuario:
+            id: cep_menu
+            pos_hint: {'x': 0.02, 'y': 0.42}
+        #
+        PerfilUsuario:
+            id: rua_menu
+            pos_hint: {'x': 0.02, 'y': 0.37}
+        #
+        PerfilUsuario:
+            id: casa_menu
+            pos_hint: {'x': 0.02, 'y': 0.32}
+        #
+        PerfilUsuario:
+            id: data_menu
+            pos_hint: {'x': 0.02, 'y': 0.27}
+        #
+        PerfilUsuario:
+            id: saldo_menu
+            pos_hint: {'x': 0.02, 'y': 0.22}
+        #
+        BoxLayout:
+            orientation:'horizontal'
+            pos_hint: {'center_x': 0.175, 'center_y': 0.13}
+            size_hint: None, None
+            size: self.minimum_size
+            spacing: 20
+            #
+            Button:
+                text: "Alterar Perfil"
+                size_hint: None, None
+                size: 160, 50
+                font_size: 18
+                background_color: 0.4, 0.4, 0.4, 1
+                on_press: root.manager.transition.direction = 'left'
+                on_release: app.root.current = 'perfil'
+            #
+            Button:
+                text: "Sair"
+                size_hint: None, None
+                size: 160, 50
+                font_size: 18
+                background_color: 0.9, 0.2, 0.2, 1
+                on_press: root.manager.transition.direction = 'left'
+                on_release: app.root.current = 'login'
+        #
+        Button:
+            text: "Fechar Aplicativo"
+            size_hint: None, None
+            size: 340, 50
+            font_size: 18
+            pos_hint: {'center_x':.175, 'center_y':.05}
+            background_color: 0.4, 0.4, 0.4, 1
+            on_press: app.stop()
+#
+<Screen_Perfil>:
+    name: "perfil"
+    FloatLayout:
+        Fundo:
+        #
+        # banner
+        #
+        BannerLogo:
+        #
+        PyBank:
+        #
+        Perfil:
+        #
+        # Perfil atual
+        #
+        Label:
+            text: "Perfil"
+            font_size: 30
+            halign: "left"
+            pos_hint: {'x': 0.14, 'y': 0.65}
+            size_hint: None, None
+            color: 0, 0, 0, 1
+            bold: True
+        #
+        PerfilUsuario:
+            id: nome_menu_alterar
+            pos_hint: {'x': 0.02, 'y': 0.62}
+        #
+        PerfilUsuario:
+            id: cpf_menu_alterar
+            pos_hint: {'x': 0.02, 'y': 0.57}
+        #
+        PerfilUsuario:
+            id: numero_menu_alterar
+            pos_hint: {'x': 0.02, 'y': 0.52}
+        #
+        PerfilUsuario:
+            id: email_menu_alterar
+            pos_hint: {'x': 0.02, 'y': 0.47}
+        #
+        PerfilUsuario:
+            id: cep_menu_alterar
+            pos_hint: {'x': 0.02, 'y': 0.42}
+        #
+        PerfilUsuario:
+            id: rua_menu_alterar
+            pos_hint: {'x': 0.02, 'y': 0.37}
+        #
+        PerfilUsuario:
+            id: casa_menu_alterar
+            pos_hint: {'x': 0.02, 'y': 0.32}
+        #
+        PerfilUsuario:
+            id: data_menu_alterar
+            pos_hint: {'x': 0.02, 'y': 0.27}
+        #
+        PerfilUsuario:
+            id: saldo_menu_alterar
+            pos_hint: {'x': 0.02, 'y': 0.22}
+        #
+        Button:
+            text: "Alterar"
+            size_hint: None, None
+            size: 340, 60
+            font_size: 25
+            font_color: 1, 1, 1, 1
+            pos_hint: {'center_x':.175, 'center_y':.1}
+            background_color: 0.4, 1, 0.4, 1
+            on_press: root.manager.transition.direction = 'right'
+            on_release: root.Alterar_perfil(ddd_alterar.text, numero_alterar.text, email_alterar.text, cep_alterar.text, rua_alterar.text, casa_alterar.text)
+        #
+        # alterar informações
+        #
+        Label:
+            text: "DDD/Celular:"
+            font_size: 20
+            halign: 'left'
+            size_hint: None, None
+            size: self.texture_size
+            pos_hint: {'x':.4, 'y':.42}
+            color: 0, 0, 0, 1
+        #
+        BoxLayout:
+            orientation: "horizontal"
+            size_hint: None, None
+            size: self.minimum_size
+            halign: 'left'
+            pos_hint: {'x': 0.4, 'y':.36}
+            spacing: 5
+            #
+            TextInput:
+                id: ddd_alterar
+                size_hint: None, None
+                size: 50, 40
+                color: 0, 0, 0, 1
+                size_hint_x: None
+                width: self.size[0]
+                text: ""
+                font_color: 0.6, 0.6, 0.6, 1
+            #
+            TextInput:
+                id: numero_alterar
+                size_hint: None, None
+                size: 120, 40
+                halign: 'left'
+                color: 0, 0, 0, 1
+                size_hint_x: None
+                width: self.size[0]
+                text: ""
+                font_color: 0.6, 0.6, 0.6, 1
+        #
+        LabelVerificacao:
+            id: DDDnumero_alterar_error
+            size_hint: None, None
+            size: self.texture_size
+            pos_hint: {'x':.4, 'y':.32}
+        #
+        Label:
+            text: "E-mail:"
+            font_size: 20
+            halign: 'left'
+            size_hint: None, None
+            size: self.texture_size
+            pos_hint: {'x':.4, 'y':.62}
+            color: 0, 0, 0, 1
+        #
+        TextInput:
+            id: email_alterar
+            size_hint: None, None
+            size: 250, 40
+            halign: 'left'
+            pos_hint: {'x':.4, 'y':.56}
+            color: 0, 0, 0, 1
+        #
+        LabelVerificacao:
+            id: email_alterar_error
+            size_hint: None, None
+            size: self.texture_size
+            pos_hint: {'x':.4, 'y':.52}
+        #
+        Label:
+            text: "CEP:"
+            font_size: 20
+            halign: 'left'
+            size_hint: None, None
+            size: self.texture_size
+            pos_hint: {'x':.68, 'y':.62}
+            color: 0, 0, 0, 1
+        #
+        TextInput:
+            id: cep_alterar
+            size_hint: None, None
+            size: 100, 40
+            halign: 'left'
+            pos_hint: {'x':.68, 'y':.56}
+            color: 0, 0, 0, 1
+        #
+        LabelVerificacao:
+            id: cep_alterar_error
+            size_hint: None, None
+            size: self.texture_size
+            pos_hint: {'x':.68, 'y':.52}
+        #
+        Label:
+            text: "Rua:"
+            font_size: 20
+            halign: 'left'
+            size_hint: None, None
+            size: self.texture_size
+            pos_hint: {'x':.68, 'y':.42}
+            color: 0, 0, 0, 1
+        #
+        TextInput:
+            id: rua_alterar
+            text: "Rua "
+            size_hint: None, None
+            size: 280, 40
+            halign: 'left'
+            pos_hint: {'x':.68, 'y':.36}
+            color: 0, 0, 0, 1
+        #
+        LabelVerificacao:
+            id: rua_alterar_error
+            size_hint: None, None
+            size: self.texture_size
+            pos_hint: {'x':.68, 'y':.32}
+        #
+        Label:
+            text: "Numero da casa:"
+            font_size: 20
+            halign: 'left'
+            size_hint: None, None
+            size: self.texture_size
+            pos_hint: {'x':.68, 'y':.22}
+            color: 0, 0, 0, 1
+        #
+        TextInput:
+            id: casa_alterar
+            size_hint: None, None
+            size: 120, 40
+            halign: 'left'
+            pos_hint: {'x':.68, 'y':.16}
+            color: 0, 0, 0, 1
+        #
+        LabelVerificacao:
+            id: casa_alterar_error
+            size_hint: None, None
+            size: self.texture_size
+            pos_hint: {'x':.68, 'y':.12}
+#
+<Screen_Extrato>:
+    name: "extrato"
+    FloatLayout:
+        Fundo:
+        #
+        BannerLogo:
+        #
+        PyBank:
+        #
+        Label:
+            text: "Extrato"
+            font_size: 30
+            halign: "center"
+            pos_hint: {'center_x': 0.5, 'y': 0.65}
+            size_hint: None, None
+            color: 0, 0, 0, 1
+            bold: True
+        #
+        ScrollView:
+            size_hint: (0.9, 0.7)
+            pos_hint: {'center_x': 0.5, 'center_y': 0.4}
+            #
+            BoxLayout:
+                orientation: 'vertical'
+                size_hint_y: None
+                height: self.minimum_height
+                padding: 10
+                spacing: 10
+                #
+                Label:
+                    id: extrato
+                    text: "Aqui vai o texto do extrato\ntexto do extrato"
+                    font_size: 18
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    halign: 'left'
+                    valign: 'top'
+                    text_size: self.width, None
+                    color: 0, 0, 0, 1
+        #
+        VoltarMenu:
+            pos_hint: {'center_x': 0.9, 'center_y': 0.85}
+            on_press: root.manager.transition.direction = 'right'
+            on_release: root.manager.current = "menu"
+
+#
+<Screen_Saque>:
+    name: "saque"
+    FloatLayout:
+        Fundo:
+        #
+        BannerLogo:
+        #
+        PyBank:
+        #
+        # area de saque
+        #
+        Label:
+            text: "Valor do Saque:"
+            font_size: 25
+            size_hint: None, None
+            pos_hint: {'center_x':.5, 'center_y':.55}
+            bold: True
+            color: 0, 0, 0, 1
+        #
+        TextInput:
+            id: saque
+            text: ""
+            font_size: 20
+            size: 130, 50
+            multiline: False
+            size_hint: None, None
+            pos_hint: {'center_x':.5, 'center_y':.45}
+            padding_y: (self.height - self.line_height) / 2
+            halign: 'center'
+            background_color: 0.9, 0.9, 0.9, 1
+            color: 0, 0, 0, 1
+        #
+        LabelVerificacao:
+            id: saque_error
+            size_hint: None, None
+            pos_hint: {'center_x':.5, 'center_y':.37}
+        #
+        SaqueDeposito:
+            text: "Sacar"
+            on_release: root.manager.transition.direction = 'left'
+            on_press: root.Sacar(saque.text)
+        #
+        Widget:
+            canvas.before:
+                Color:
+                    rgba: 0.3, 0.8, 0.8, 1
+                Rectangle:
+                    pos: 0, 0
+                    size: 1280, 80
+        #
+        VoltarMenu:
+            pos_hint: {'center_x':.5, 'center_y':.2}
+            on_press: root.manager.transition.direction = 'right'
+            on_release: root.manager.current = "menu"
+        #
+        Label:
+            id: saldo_saque
+            text: "0"
+            font_size: 25
+            size_hint: None, None
+            pos_hint: {'center_x':.5, 'center_y':.06}
+            bold: True
+            color: 1, 1, 1, 1
+            outline_width: 1
+            outline_color: 0.5, 0.5, 0.5, 1
+
+
+#
+<Screen_Deposito>:
+    name: "deposito"
+    FloatLayout:
+        Fundo:
+        #
+        BannerLogo:
+        #
+        PyBank:
+        #
+        # area de deposito
+        #
+        Label:
+            text: "Valor do Deposito:"
+            font_size: 25
+            size_hint: None, None
+            pos_hint: {'center_x':.5, 'center_y':.55}
+            bold: True
+            color: 0, 0, 0, 1
+        #
+        TextInput:
+            id: deposito
+            text: ""
+            font_size: 20
+            size: 130, 50
+            multiline: False
+            size_hint: None, None
+            pos_hint: {'center_x':.5, 'center_y':.45}
+            padding_y: (self.height - self.line_height) / 2
+            halign: 'center'
+            background_color: 0.9, 0.9, 0.9, 1
+            color: 0, 0, 0, 1
+        #
+        LabelVerificacao:
+            id: deposito_error
+            size_hint: None, None
+            pos_hint: {'center_x':.5, 'center_y':.37}
+        #
+        SaqueDeposito:
+            text: "Depositar"
+            on_release: root.manager.transition.direction = 'left'
+            on_press: root.Depositar(deposito.text)
+        #
+        Widget:
+            canvas.before:
+                Color:
+                    rgba: 0.3, 0.8, 0.8, 1
+                Rectangle:
+                    pos: 0, 0
+                    size: 1280, 80
+        #
+        VoltarMenu:
+            pos_hint: {'center_x':.5, 'center_y':.2}
+            on_press: root.manager.transition.direction = 'right'
+            on_release: root.manager.current = "menu"
+        #
+        Label:
+            id: saldo_deposito
+            text: "Saldo: R$ 0,00"
+            font_size: 25
+            size_hint: None, None
+            pos_hint: {'center_x':.5, 'center_y':.06}
+            bold: True
+            color: 1, 1, 1, 1
+            outline_width: 1
+            outline_color: 0.5, 0.5, 0.5, 1
+#

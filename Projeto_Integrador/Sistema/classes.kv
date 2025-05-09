@@ -1,0 +1,121 @@
+#
+# Fundo da tela
+#
+<Fundo@Widget>:
+    canvas.before:
+        Color:
+            rgba: 0.8, 0.8, 0.8, 1
+        Rectangle:
+            size: self.size
+            pos: self.pos
+#
+# Tela da logo
+#
+<BannerLogo@Widget>:
+    canvas.before:
+        Color:
+            rgba: 0.4, 0.9, 1, 1
+        Rectangle:
+            pos: 0, self.height - 160
+            size: 1280, 160
+        Color:
+            rgba: 0.3, 0.3, 0.3, 1
+        Line:
+            points: [0, self.height - 160, 1280, self.height - 160]
+            width: 1.7
+#
+# Fundo do perfil
+#
+<Perfil@Widget>:
+    canvas.before:
+        Color:
+            rgba: 0.9, 0.9, 0.9, 1
+        Rectangle:
+            pos: 0, 0
+            size: 450, 720 - 161.3
+#
+# logo
+#
+<PyBank@Label>:
+    text: "Py Bank"
+    font_size: 50
+    pos_hint: {'center_x':.5, 'center_y':.89}
+    size_hint: None, None
+    bold: True
+    color: 1, 1, 1, 1
+    outline_width: 1
+    outline_color: 0.5, 0.5, 0.5, 1
+#
+# exibir perfil
+#
+<PerfilUsuario@Label>:
+    text: "Erro"
+    font_size: 20
+    halign: 'left'
+    size_hint: None, None
+    size: self.texture_size
+    color: 0, 0, 0, 1
+#
+#
+#
+#   LABELS
+#
+# label de verificação
+#
+<LabelVerificacao@Label>:
+    text: ""
+    font_size: 15
+    halign: 'left'
+    color: 0.5, 0, 0, 1
+#
+# label do cadastro
+#
+<LabelCadastro@Label>:
+    font_size: 20
+    halign: 'left'
+    size_hint: None, None
+    size: self.texture_size
+    color: 0, 0, 0, 1
+#
+# label do login
+#
+#
+#
+#
+#   BUTTONS
+#
+# botão de operações
+#
+<Operacoes@Button>:
+    size_hint: None, None
+    size: 680, 120
+    font_size: 18
+    background_color: 0.1, 1, 0.1, 1
+#
+# botão de voltar ao menu
+#
+<VoltarMenu@Button>:
+    text: "Voltar ao menu"
+    size_hint: None, None
+    size: 160, 50
+    font_size: 18
+    background_color: 0.5, 0.5, 0.5, 1
+#
+# botão saque/deposito
+#
+<SaqueDeposito@Button>:
+    size_hint: None, None
+    size: 160, 50
+    font_size: 18
+    pos_hint: {'center_x':.5, 'center_y':.3}
+    background_color: 0.5, 0.5, 0.5, 1
+#
+#    TEXTINPUTS
+#
+# textinput do cadastro
+#
+<InputCadastro@TextInput>:
+    size_hint: None, None
+    size: 250, 40
+    halign: 'left'
+    color: 0, 0, 0, 1
